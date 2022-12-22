@@ -1,4 +1,4 @@
-import { insertNewUser } from "../../repository/users/sigin.repositories.js"
+import { insertNewUser } from "../../repository/users/signup.repositories.js"
 
 export default async function signup(req, res){
     const user = res.locals.user
