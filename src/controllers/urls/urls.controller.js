@@ -1,4 +1,4 @@
-import { selectIdUrl, selectUrl } from "../../repository/urls/urls.repositoires.js"
+import { deleteIdUrl, selectIdUrl, selectUrl } from "../../repository/urls/urls.repositoires.js"
 
 export async function postShortUrls(req, res) {
 
@@ -40,8 +40,26 @@ export async function acessShortUrl(req, res) {
         if (!url) {
             return res.sendStatus(404);
         }
-        res.send(url);
+        res.redirect(url);
     } catch (error) {
         return res.status(500).send(error.message);
+    }
+}
+
+export async function deleteUrl(req, res) {
+    const urlId = req.params.id;
+    const userId = res.locals.session.user_id
+    console.log("userid: ", userId);
+
+
+    try {
+        const del = await deleteIdUrl(urlId, userId);
+        if(del===0){
+            return res.sendStatus(404); 
+        }
+        res.sendStatus(204);
+
+    } catch (error) {
+        return res.status(500).send(error.message)
     }
 }

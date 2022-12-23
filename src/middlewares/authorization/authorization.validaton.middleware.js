@@ -2,6 +2,7 @@ import { checkToken } from "../../repository/authorizarion/authorizarion.reposit
 
 export async function authorizationToken(req, res, next) {
     const authorization = req.headers.authorization;
+    console.log(authorization)
 
     const token = authorization?.replace("Bearer ", "");
 
@@ -14,8 +15,7 @@ export async function authorizationToken(req, res, next) {
         
         if (!session){
             return res.status(401).send("Invalid token")
-        }
-        
+        } 
         
         res.locals.session = session;
 

@@ -26,3 +26,10 @@ export async function selectUrl(shortUrl) {
     await connectionDB.query(`UPDATE urls SET visits = visits + 1 WHERE id = $1;`, [id]);
     return url.rows[0].url;
 }
+
+export async function deleteIdUrl(urlId, userId) {
+
+    const del = await connectionDB.query(`DELETE FROM urls WHERE id = $1 and user_id=$2`, [urlId, userId]);
+    return del.rowCount;
+}
+
