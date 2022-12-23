@@ -1,6 +1,6 @@
 import { findUser } from "../../repository/users/signgin.repositories.js";
 import bcrypt from "bcrypt";
-import { singinSchema } from "../../models/users/signin.Schema.js";
+import { singinSchema } from "../../models/users/signin.model.js";
 
 
 export default async function signinValidation(req, res, next) {
