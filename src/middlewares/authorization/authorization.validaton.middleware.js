@@ -6,7 +6,7 @@ export async function authorizationToken(req, res, next) {
     const token = authorization?.replace("Bearer ", "");
 
     if (!token) {
-        return res.Status(401).send("token don't finded");
+        return res.status(401).send("token don't finded");
     }
 
     try {
@@ -15,6 +15,7 @@ export async function authorizationToken(req, res, next) {
         if (!session){
             return res.status(401).send("Invalid token")
         }
+        
         
         res.locals.session = session;
 

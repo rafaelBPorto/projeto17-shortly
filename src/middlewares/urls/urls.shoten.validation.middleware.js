@@ -10,5 +10,5 @@ export function urlShotenValidation(req, res, next){
         return res.status(422).send(errors);
 
     }
-    return res.send("tudo ok até agora")
+    next()
 }
