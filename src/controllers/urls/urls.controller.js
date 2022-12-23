@@ -1,4 +1,4 @@
-import { selectIdUrl } from "../../repository/urls/urls.repositoires.js"
+import { selectIdUrl, selectUrl } from "../../repository/urls/urls.repositoires.js"
 
 export async function postShortUrls(req, res) {
 
@@ -13,7 +13,7 @@ export async function postShortUrls(req, res) {
 }
 
 export async function getUrl(req, res) {
-    const { id } = req.params
+    const { id } = req.params;
 
     try {
         const url = await selectIdUrl(id);
@@ -28,5 +28,20 @@ export async function getUrl(req, res) {
 
     } catch (error) {
         return res.status(500).send(error.message)
+    }
+}
+
+export async function acessShortUrl(req, res) {
+    const { shortUrl } = req.params;
+    
+
+    try {
+        const url = await selectUrl(shortUrl)
+        if (!url) {
+            return res.sendStatus(404);
+        }
+        res.send(url);
+    } catch (error) {
+        return res.status(500).send(error.message);
     }
 }
