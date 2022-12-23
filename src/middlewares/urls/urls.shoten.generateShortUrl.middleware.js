@@ -5,8 +5,6 @@ export async function genarateShortUrl(req, res, next) {
     const { url } = req.body
     const { user_id } = res.locals.session
 
-    console.log(user_id);
-
     const shortUrl = nanoid(10)
     try {
         await insertUrls(user_id, url, shortUrl)

@@ -49,9 +49,7 @@ export async function acessShortUrl(req, res) {
 export async function deleteUrl(req, res) {
     const urlId = req.params.id;
     const userId = res.locals.session.user_id
-    console.log("userid: ", userId);
-
-
+    
     try {
         const del = await deleteIdUrl(urlId, userId);
         if(del===0){

@@ -21,7 +21,7 @@ export async function selectUrl(shortUrl) {
     }
 
     const id = url.rows[0].id
-    console.log(id)
+    
     const visit = await connectionDB.query(`SELECT visits FROM urls WHERE id = $1;`,[id]);
     await connectionDB.query(`UPDATE urls SET visits = visits + 1 WHERE id = $1;`, [id]);
     return url.rows[0].url;
